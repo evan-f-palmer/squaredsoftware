@@ -1,5 +1,5 @@
 /build
-**/.gradle/**
+**/.gradle/
 /desktop/build
 /desktop/bin
 **.classpath
