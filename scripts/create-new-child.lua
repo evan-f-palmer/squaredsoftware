@@ -28,7 +28,7 @@ cloneSquaredSoftwareLib = function()
 end
 
 untar = function()
-    cdToOutputDirThenExecute("cp " .. squaredSoftwareFolder .. tarName .. " .") 
+    cdToOutputDirThenExecute("cp " .. squaredSoftwareScriptsFolder .. tarName .. " .") 
     cdToOutputDirThenExecute("tar -zxf " .. tarName)
     cdToOutputDirThenExecute("rm " .. tarName)
 end
@@ -41,4 +41,9 @@ cdToOutputDirThenExecute = function(xCmd)
     os.execute("cd " .. outputDir .. "; " .. xCmd)
 end
 
+promptForInput = function(xPrompt)
+    io.write(xPrompt)
+    io.flush()
+    return io.read()
+end
 main()

@@ -1,3 +1,4 @@
+apply plugin: "eclipse"
 apply plugin: "java"
 
 sourceCompatibility = 1.6
@@ -6,5 +7,13 @@ sourceCompatibility = 1.6
 sourceSets.main.java.srcDirs = [ "src/" ]
 
 eclipse.project {
-    name = appName + "-core"
+    name = "squaredsoftware-core"
+}
+
+dependencies {
+	compile "com.badlogicgames.gdx:gdx:$gdxVersion"
+    compile "com.badlogicgames.ashley:ashley:1.0.1"
+    compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+    compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
+    compile fileTree(dir: 'libs', include: '*.jar')
 }
