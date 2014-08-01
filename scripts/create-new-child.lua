@@ -2,7 +2,9 @@
 local newName
 local outputDir
 local squaredSoftwareRepo          = "git@github.com:evan-f-palmer/squaredsoftware.git"
-local squaredSoftwareScriptsFolder = "squaredsoftware/scripts/"
+local gradleBuildFile              = "build.gradle"
+local squaredSoftwareFolder        = "squaredsoftware/"
+local squaredSoftwareScriptsFolder = squaredSoftwareFolder .. "scripts/"
 local tarName                      = "child.tar"
 
 local main
@@ -35,6 +37,8 @@ end
 
 rename = function()
     cdToOutputDirThenExecute("mv child " .. newName)
+    local filePath = newName .. "/" .. gradleBuildFile
+    cdToOutputDirThenExecute("sed -i \'s/child/" .. newName .. "/g\' " .. filePath)
 end
 
 cdToOutputDirThenExecute = function(xCmd)
@@ -46,4 +50,5 @@ promptForInput = function(xPrompt)
     io.flush()
     return io.read()
 end
+
 main()
