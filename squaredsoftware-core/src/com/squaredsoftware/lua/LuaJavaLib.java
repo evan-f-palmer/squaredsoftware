@@ -26,8 +26,6 @@ public class LuaJavaLib extends LuajavaLib{
 		"loadLib",
 	};
 	
-	
-	
 	public Varargs invoke(Varargs args) {
 		try {
 		switch(opcode)

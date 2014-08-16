@@ -1,6 +1,6 @@
-#!/usr/bin/lua
-local newName
-local outputDir
+#!/opt/lua-5.1/bin/lua
+local newName                      = ""
+local outputDir                    = ""
 local squaredSoftwareRepo          = "git@github.com:evan-f-palmer/squaredsoftware.git"
 local gradleBuildFile              = "build.gradle"
 local squaredSoftwareFolder        = "squaredsoftware/"
@@ -16,9 +16,16 @@ local promptForInput
 local cdToOutputDirThenExecute
 
 main = function()
-    outputDir = promptForInput("ENTER the output directory  : ")
+
+    if(#arg == 2) then
+        outputDir = arg[1]
+        newName   = arg[2]
+    else
+        outputDir = promptForInput("ENTER the output directory  : ")
+        newName   = promptForInput("ENTER the new projects name : ")
+    end
+
     assert(os.execute("mkdir -p " .. outputDir))
-    newName   = promptForInput("ENTER the new projects name : ")
 
     cloneSquaredSoftwareLib()
     untar()
@@ -26,6 +33,7 @@ main = function()
 end
 
 cloneSquaredSoftwareLib = function()
+    print("here", newName)
     cdToOutputDirThenExecute("git clone " .. squaredSoftwareRepo)
 end
 
@@ -42,13 +50,14 @@ rename = function()
 end
 
 cdToOutputDirThenExecute = function(xCmd)
+print("cd " .. outputDir .. "; " .. xCmd)
     os.execute("cd " .. outputDir .. "; " .. xCmd)
 end
 
 promptForInput = function(xPrompt)
     io.write(xPrompt)
     io.flush()
-    return io.read()
+    return io.read("*l")
 end
 
 main()

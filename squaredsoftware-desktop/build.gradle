@@ -3,12 +3,12 @@ apply plugin: "java"
 sourceCompatibility = 1.6
 sourceSets.main.java.srcDirs = [ "src/" ]
 
-project.ext.mainClassName = "com.squaredsoftware.desktop.DesktopLauncher"
+project.ext.luaInterpreterMainClassName = "com.squaredsoftware.desktop.luaInterpreter.LuaInterpreter"
 project.ext.assetsDir = new File("assets");
 project.ext.luaSrcDir = new File("../squaredsoftware-core/src.lua");
 jarPath =  new File("build/libs/desktop-1.0.jar");
 
-task dist(type: Jar) {
+task buildLuaInterpreter(type: Jar) {
     from files(sourceSets.main.output.classesDir)
     from files(sourceSets.main.output.resourcesDir)
     from {configurations.compile.collect {zipTree(it)}}
@@ -16,21 +16,10 @@ task dist(type: Jar) {
     from files(project.luaSrcDir);
  
     manifest {
-        attributes 'Main-Class': project.mainClassName
+        attributes 'Main-Class': project.ext.luaInterpreterMainClassName
     }
 }
-
-dist.dependsOn classes
-
-task run(dependsOn: dist) << {
-	javaexec {
-		main="-jar"; 
-		standardInput = System.in; 
-		ignoreExitValue = true; 
-		args jar.archivePath
-	}
-}
-
+buildLuaInterpreter.dependsOn classes
 
 task runGdxInputTest(dependsOn: classes, type: JavaExec) {
     description 'Runs the gdx input test.'

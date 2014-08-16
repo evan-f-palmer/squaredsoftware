@@ -9,9 +9,8 @@ import org.luaj.vm2.lib.PackageLib;
 import org.luaj.vm2.lib.StringLib;
 import org.luaj.vm2.lib.TableLib;
 import org.luaj.vm2.lib.jse.JseBaseLib;
+import org.luaj.vm2.lib.jse.JseIoLib;
 import org.luaj.vm2.lib.jse.JseMathLib;
-
-import com.squaredsoftware.lua.LuaIOLib;
 import com.squaredsoftware.lua.LuaJavaLib;
 import com.squaredsoftware.lua.LuaOSLib;
 
@@ -40,9 +39,8 @@ public class GdxLuaGlobals extends Globals {
 		load(new StringLib());
 		load(new CoroutineLib());
 		load(new JseMathLib());
-		load(new LuaIOLib());
+		load(new JseIoLib());
 		load(new LuaOSLib());
 		load(new LuaJavaLib());
-		this.STDIN = System.in;
 	}
 }
