@@ -1,27 +1,32 @@
 package com.squaredsoftware;
 
+import java.io.IOException;
+
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.squaredsoftware.lua.LuaScriptManager;
+import com.squaredsoftware.lua.Lua;
 
 public class Test extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
 	
-	LuaScriptManager lua ;
+	Lua lua ;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
 		
-		lua = new LuaScriptManager();
-		lua.runScript("print(\'hello\')");
-		
-		lua.loadFile("hello.lua");
+		lua = new Lua();
+		try {
+			lua.runString("print(\'hello\')");
+			lua.loadFile("hello.lua");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
