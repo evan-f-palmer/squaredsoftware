@@ -1,7 +1,5 @@
 package com.squaredsoftware;
 
-import java.io.IOException;
-
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -21,12 +19,9 @@ public class Test extends ApplicationAdapter {
 		img = new Texture("badlogic.jpg");
 		
 		lua = new Lua();
-		try {
-			lua.runString("print(\'hello\')");
-			lua.loadFile("hello.lua");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		lua.runString("print(\'hello\')");
+		lua.loadFile("hello.lua");
+		
 	}
 
 	@Override
