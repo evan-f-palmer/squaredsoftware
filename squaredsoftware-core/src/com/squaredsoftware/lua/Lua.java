@@ -19,7 +19,7 @@ import com.squaredsoftware.lua.gdx.GdxLuaGlobals;
 public class Lua {
 	private static final int SQUARED_SOFTWARE_VERSION_INDEX = 0;
 	private static final String[] SQUARED_SOFTWARE_VERSIONS = {
-		"1.0.0"
+		"1.0.1"
 	};
 
 	private static final String SQUARED_SOFTWARE_VERSION = SQUARED_SOFTWARE_VERSIONS[SQUARED_SOFTWARE_VERSION_INDEX];
