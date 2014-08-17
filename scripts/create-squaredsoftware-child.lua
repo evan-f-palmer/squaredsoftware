@@ -1,5 +1,5 @@
 #!/opt/squaredsoftware/bin/lua
-require("ScriptUtils")
+require("ScriptUtil")
 
 local newName                      = ""
 local enclosingDir                 = ""
@@ -20,11 +20,11 @@ main = function()
   end
 
   Linux.createDir(enclosingDir)
-  Git.cloneSquaredSoftwareRepoTo(enclosingDir)
+  Git.cloneSquaredSoftwareRepoTo(enclosingDir .. "/" ..squaredSoftwareFolder)
   Execute.cd(enclosingDir)
   Linux.copyFile(squaredSoftwareScriptsFolder .. tarName, " .")
-  Linux.untar(tarName)
-  Linux.deleteFile(tarName)  rename()
+  Linux.unTar(tarName)
+  Linux.deleteFile(tarName) 
   Files.replaceStringWithNewStringInFile("child", newName, gradleBuildFile)
   Linux.move("child", newName)
 end
