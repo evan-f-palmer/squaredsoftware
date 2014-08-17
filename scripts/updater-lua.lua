@@ -24,9 +24,7 @@ main = function()
     Execute.cd(repoDirAbsPath)
     Git.fetch()
     if(not Git.isLocalRepoCommitIdTheSameAsTip(repoDirAbsPath)) then
-      Linux.deleteDir(repoDirAbsPath)
-      Linux.createDir(repoDirAbsPath)
-      Git.cloneSquaredSoftwareRepoTo(repoDirAbsPath)
+      Git.merge()
       isInNeedOfUpdate = true
     end
   end

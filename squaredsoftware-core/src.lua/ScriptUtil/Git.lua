@@ -6,6 +6,7 @@ local getTipCommitId
 local clone
 local cloneTo
 local fetch
+local merge
 local cloneSquaredSoftwareRepoTo
 
 local squaredSoftwareRepoName        = "git@github.com:evan-f-palmer/squaredsoftware.git"
@@ -35,6 +36,10 @@ fetch = function()
   Execute.executeCmd("git fetch ")
 end
 
+merge = function()
+  Execute.executeCmd("git merge")
+end
+
 cloneSquaredSoftwareRepoTo = function(xDir)
   cloneTo(squaredSoftwareRepoName, xDir)
 end
@@ -46,5 +51,6 @@ Git = {
   clone                           = clone,
   cloneTo                         = cloneTo,
   fetch                           = fetch,
+  merge                           = merge,
   cloneSquaredSoftwareRepoTo      = cloneSquaredSoftwareRepoTo,
 }
