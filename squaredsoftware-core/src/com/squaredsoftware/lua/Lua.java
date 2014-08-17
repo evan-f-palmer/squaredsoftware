@@ -3,11 +3,9 @@ package com.squaredsoftware.lua;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Scanner;
 
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaError;
@@ -22,7 +20,7 @@ import com.squaredsoftware.lua.gdx.GdxLuaGlobals;
 public class Lua {
 	private static final int SQUARED_SOFTWARE_VERSION_INDEX = 0;
 	private static final String[] SQUARED_SOFTWARE_VERSIONS = {
-		"1.0.4"
+		"1.0.5"
 	};
 	
 	private static String SQUARED_SOFTWARE_GIT_ID = "";
