@@ -3,15 +3,18 @@ package com.squaredsoftware.lua;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaError;
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.Varargs;
+import org.luaj.vm2.lib.jse.CoerceLuaToJava;
 
 import com.badlogic.gdx.Gdx;
 import com.squaredsoftware.lua.gdx.GdxLuaGlobals;
@@ -19,14 +22,15 @@ import com.squaredsoftware.lua.gdx.GdxLuaGlobals;
 public class Lua {
 	private static final int SQUARED_SOFTWARE_VERSION_INDEX = 0;
 	private static final String[] SQUARED_SOFTWARE_VERSIONS = {
-		"1.0.1"
+		"1.0.4"
 	};
-
+	
+	private static String SQUARED_SOFTWARE_GIT_ID = "";
+	
 	private static final String SQUARED_SOFTWARE_VERSION = SQUARED_SOFTWARE_VERSIONS[SQUARED_SOFTWARE_VERSION_INDEX];
 	private static final String LUAJ_VERSION = org.luaj.vm2.Lua._VERSION + " Copyright (c) 2012 Luaj.org.org";
-	private static final String VERSION = "LuaJ Version            : " + LUAJ_VERSION + "\n"
-										+ "Squared Software Version: " + SQUARED_SOFTWARE_VERSION;
-
+	private static String VERSION = "";
+	private static boolean isGitIdLoaded = false;
 	private Globals globals;
 	
 	public Lua() {
@@ -56,6 +60,14 @@ public class Lua {
 		}
 	}
 
+	public String getVersion() {
+		if(!isGitIdLoaded) {
+			isGitIdLoaded = true;
+			loadVersion();
+		}
+		return VERSION;
+	}
+	
 	public void main( String[] args ) throws IOException {
 		globals = new GdxLuaGlobals();
 		
@@ -66,10 +78,20 @@ public class Lua {
 		}
 	}
 
+	private void loadVersion() {
+		loadFile("SquaredSoftwareGitId.lua");
+		String ver = (String) CoerceLuaToJava.coerce(globals.get("SquaredSoftwareGitId"), String.class);
+		SQUARED_SOFTWARE_GIT_ID = ver.trim();
+		
+		VERSION = "LuaJ Version            : " + LUAJ_VERSION + "\n"
+			  	+ "Squared Software Version: " + SQUARED_SOFTWARE_VERSION + "\n"
+				+ "Squared Software Git ID : " +  SQUARED_SOFTWARE_GIT_ID;
+	}
+
 	private void processArgsAndExecute(String[] args) {
 		int index = 0;
 		if(args[0].contains("-v")) {
-			System.out.println(VERSION);
+			System.out.println(getVersion());
 			index = 1;
 		} 
 		
@@ -85,7 +107,7 @@ public class Lua {
 
 	private void interactiveMode() throws IOException {
 		BufferedReader reader = new BufferedReader( new InputStreamReader( System.in ) );
-		System.out.println(VERSION);
+		System.out.println(getVersion());
 		while ( true ) {
 			System.out.print("> ");
 			System.out.flush();
