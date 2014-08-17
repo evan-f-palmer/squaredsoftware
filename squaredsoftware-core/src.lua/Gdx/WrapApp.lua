@@ -29,7 +29,7 @@ createBlankApp = function()
 	return blankApp
 end
 
-WrapApp = {
+GdxWrapApp = {
 	wrapApp        = wrapApp,
 	createBlankApp = createBlankApp,
 }
