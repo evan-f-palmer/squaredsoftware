@@ -13,21 +13,31 @@ local installDir     = "/opt/squaredsoftware/lua/"
 
 local main
 
+local isInNeedOfUpdate = false
+
 main = function()
   if(not Files.doesDirectoryExist(repoDirAbsPath)) then
     Linux.createDir(repoDirAbsPath)
     Git.cloneSquaredSoftwareRepoTo(repoDirAbsPath)
-  elseif(not Git.isLocalRepoCommitIdTheSameAsTip(repoDirAbsPath)) then
-    Linux.deleteDir(repoDirAbsPath)
-    Linux.createDir(repoDirAbsPath)
-    Git.cloneSquaredSoftwareRepoTo(repoDirAbsPath)
+    isInNeedOfUpdate = true
+  else
+    Execute.cd(repoDirAbsPath)
+    Git.fetch()
+    if(not Git.isLocalRepoCommitIdTheSameAsTip(repoDirAbsPath)) then
+      Linux.deleteDir(repoDirAbsPath)
+      Linux.createDir(repoDirAbsPath)
+      Git.cloneSquaredSoftwareRepoTo(repoDirAbsPath)
+      isInNeedOfUpdate = true
+    end
   end
   
-  Execute.cd(repoDirAbsPath)
-  Execute.cd(desktopDir)
-  Execute.executeCmd(buildCmd)
-  Linux.deleteFile(installDir .. newJarName)
-  Linux.move(libsDir .. builtJarName, installDir .. newJarName)
+  if(isInNeedOfUpdate) then
+    Execute.cd(repoDirAbsPath)
+    Execute.cd(desktopDir)
+    Execute.executeCmd(buildCmd)
+    Linux.deleteFile(installDir .. newJarName)
+    Linux.move(libsDir .. builtJarName, installDir .. newJarName)
+  end
 end
 
 main()

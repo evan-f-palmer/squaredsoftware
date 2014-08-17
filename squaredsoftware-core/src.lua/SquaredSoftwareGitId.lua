@@ -1,1 +1,1 @@
-SquaredSoftwareGitId = "	1591e4c373ed24741ee32e86fde96f5f409fb213	"
+SquaredSoftwareGitId = "	3a981a36970d9c3d5fa9876c389afc8654ea4bea	"
