@@ -1,7 +1,10 @@
+require("ScriptUtil/Execute")
+
 local doesDirectoryExist
 local doesFileExist
+local replaceStringWithNewStringInFile
 
-function doesFileExist(xName)
+doesFileExist = function(xName)
   local f = io.open(xName, "r")
   if f ~= nil then
     io.close(f) 
@@ -15,7 +18,12 @@ doesDirectoryExist = function(xDir)
   return os.execute( "cd " .. xDir )
 end
 
+replaceStringWithNewStringInFile = function(xOldString, xNewString, xFilePath)
+  Execute.executeCmd("sed -i \'s/" .. xOldString .. "/" .. xNewString .. "/g\' " .. xFilePath)
+end
+
 Files = {
-  doesDirectoryExist = doesDirectoryExist,
-  doesFileExist      = doesFileExist,
+  doesDirectoryExist               = doesDirectoryExist,
+  doesFileExist                    = doesFileExist,
+  replaceStringWithNewStringInFile = replaceStringWithNewStringInFile,
 }

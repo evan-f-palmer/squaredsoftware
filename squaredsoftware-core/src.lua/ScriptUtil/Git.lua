@@ -10,15 +10,16 @@ local cloneSquaredSoftwareRepoTo
 local squaredSoftwareRepoName        = "git@github.com:evan-f-palmer/squaredsoftware.git"
 
 isLocalRepoCommitIdTheSameAsTip = function(xDir)
-    return getLocalCommitId(xDir) == getTipCommitId(xDir)
+    Execute.cd(xDir)
+    return getLocalCommitId() == getTipCommitId()
 end
 
-getLocalCommitId = function(xDir)
-    return Execute.executeCmdInDir(xDir, "git rev-parse HEAD")
+getLocalCommitId = function()
+    return Execute.executeCmd("git rev-parse HEAD")
 end
 
 getTipCommitId = function(xDir)
-    return Execute.executeCmdInDir(xDir, "git rev-parse origin/master")
+    return Execute.executeCmd("git rev-parse origin/master")
 end
 
 clone = function(xReponame)
