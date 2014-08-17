@@ -7,6 +7,7 @@ local clone
 local cloneTo
 local fetch
 local merge
+local pull
 local cloneSquaredSoftwareRepoTo
 
 local squaredSoftwareRepoName        = "git@github.com:evan-f-palmer/squaredsoftware.git"
@@ -40,6 +41,10 @@ merge = function()
   Execute.executeCmd("git merge")
 end
 
+pull = function()
+  Execute.executeCmd("git pull")
+end
+
 cloneSquaredSoftwareRepoTo = function(xDir)
   cloneTo(squaredSoftwareRepoName, xDir)
 end
@@ -52,5 +57,6 @@ Git = {
   cloneTo                         = cloneTo,
   fetch                           = fetch,
   merge                           = merge,
+  pull                            = pull,
   cloneSquaredSoftwareRepoTo      = cloneSquaredSoftwareRepoTo,
 }

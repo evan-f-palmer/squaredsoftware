@@ -24,7 +24,7 @@ main = function()
     Execute.cd(repoDirAbsPath)
     Git.fetch()
     if(not Git.isLocalRepoCommitIdTheSameAsTip(repoDirAbsPath)) then
-      Git.merge()
+      Git.pull()
       isInNeedOfUpdate = true
     end
   end
