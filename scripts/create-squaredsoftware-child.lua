@@ -15,8 +15,8 @@ main = function()
       enclosingDir = arg[1]
       newName      = arg[2]
   else
-      enclosingDir = Input.promptForInput("ENTER the enclosing directory  : ")
-      newName      = Input.promptForInput("ENTER the new projects name    : ")
+      enclosingDir = Input.promptAndRead("ENTER the enclosing directory  : ")
+      newName      = Input.promptAndRead("ENTER the new projects name    : ")
   end
 
   Linux.createDir(enclosingDir)
