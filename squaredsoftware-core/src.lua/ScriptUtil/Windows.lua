@@ -8,6 +8,7 @@ local copyDir
 local copyFile
 local deleteFile
 local move
+local goto
 
 createTar = function(xDirToTar, xTarName)
   return nil
@@ -41,6 +42,10 @@ move = function(xOldLocation, xNewLocation)
   return nil
 end
 
+goto = function(xPath)
+  return Execute.executeCmd('dir \"' .. xPath .. '\" /b /ad')
+end
+
 Windows = {
   createTar  = createTar,
   unTar      = unTar,
@@ -50,4 +55,5 @@ Windows = {
   copyFile   = copyFile,   
   deleteFile = deleteFile, 
   move       = move,
+  goto       = goto,
 }   
