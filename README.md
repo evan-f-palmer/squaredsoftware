@@ -11,9 +11,9 @@ subheading
 
 table
 
-   A  |  B   |    C   
- ---- |:----:| ------:|
- YEEP | YARP | 25.00% |
+   A        |  B         |    C   
+ ---------- |:----------:| -----------:|
+ YEEP       | YARP       | 25.00%      |
   
 Line is coming up.
 
