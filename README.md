@@ -10,7 +10,7 @@ subheading
   
 
 table
-   A  |  B   |    C   |
+   A  |  B   |    C   
  ---- |:----:| ------:|
  YEEP | YARP | 25.00% |
   
