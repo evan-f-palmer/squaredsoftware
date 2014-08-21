@@ -6,4 +6,4 @@ subheading
 
 - A bullet 
 
-  things in a scrolling table
+  > things in a scrolling table
