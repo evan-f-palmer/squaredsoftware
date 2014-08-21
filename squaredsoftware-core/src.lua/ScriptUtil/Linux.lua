@@ -8,6 +8,7 @@ local copyDir
 local copyFile
 local deleteFile
 local move
+local goto
 
 createTar = function(xDirToTar, xTarName)
   return Execute.executeCmd("tar czf " .. xTarName .. " " .. xDirToTar)
@@ -41,6 +42,10 @@ move = function(xOldLocation, xNewLocation)
   return Execute.executeCmd("mv  " .. xOldLocation .. " " .. xNewLocation)
 end
 
+goto = function(xPath)
+  return Execute.executeCmd('ls \"' .. xPath .. '\"')
+end
+
 Linux = {
   createTar  = createTar,
   unTar      = unTar,
@@ -48,5 +53,7 @@ Linux = {
   deleteDir  = deleteDir,  
   copyDir    = copyDir,    
   copyFile   = copyFile,   
-  deleteFile = deleteFile,   move       = move,
+  deleteFile = deleteFile, 
+  move       = move,
+  goto       = goto,
 }   
