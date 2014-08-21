@@ -1,5 +1,7 @@
 require("ScriptUtil/Execute")
 require("ScriptUtil/Files")
 require("ScriptUtil/Git")
+require("ScriptUtil/Windows")
 require("ScriptUtil/Linux")
+require("ScriptUtil/OS")
 require("ScriptUtil/Input")
