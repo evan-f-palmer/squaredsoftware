@@ -40,9 +40,8 @@ scanDirectory = function(xDir)
 end
 
 Files = {
-  canReadFile                      = canReadFile,
-  doesFileExist                    = doesFileExist,
   doesDirectoryExist               = doesDirectoryExist,
+  doesFileExist                    = doesFileExist,
   replaceStringWithNewStringInFile = replaceStringWithNewStringInFile,
   scanDirectory                    = scanDirectory,
 }

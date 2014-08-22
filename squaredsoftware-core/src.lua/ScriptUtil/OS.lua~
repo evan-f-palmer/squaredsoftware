@@ -1,6 +1,5 @@
 --local pathSeparator        = os.getenv("PATH"):sub(1,1)
 --local DEF_WIN32, DEF_LINUX = pathSeparator == "\\", pathSeparator == "/"
-local pathSeparator = "/"
 local DEF_WIN32, DEF_LINUX = false, true
 local thisOS
 

@@ -8,7 +8,7 @@
 --local copyFile
 --local deleteFile
 --local move
---local lookAt
+--local goto
 
 --createTar = function(xDirToTar, xTarName)
 --  return nil
@@ -42,7 +42,7 @@
 --  return nil
 --end
 
---lookAt = function(xPath)
+--goto = function(xPath)
 --  return Execute.executeCmd('dir \"' .. xPath .. '\" /b /ad')
 --end
 
@@ -55,5 +55,5 @@
 --  copyFile   = copyFile,   
 --  deleteFile = deleteFile, 
 --  move       = move,
---  lookAt     = lookAt,
+--  goto       = goto,
 --}   

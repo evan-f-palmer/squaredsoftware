@@ -8,7 +8,7 @@ local copyDir
 local copyFile
 local deleteFile
 local move
-local lookAt
+local goto
 
 createTar = function(xDirToTar, xTarName)
   return Execute.executeCmd("tar czf " .. xTarName .. " " .. xDirToTar)

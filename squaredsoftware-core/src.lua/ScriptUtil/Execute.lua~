@@ -17,7 +17,7 @@ executeCmd = function(xCmd)
   return result, e
 end
 
-turnOnVerbose  = function() isVerbose = true end
+turnOnVerbose = function()  isVerbose = true end
 turnOffVerbose = function() isVerbose = false end
 
 cd = function(xDir)
