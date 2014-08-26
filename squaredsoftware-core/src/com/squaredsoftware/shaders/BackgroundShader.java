@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import com.badlogic.gdx.math.Matrix4;
 
 public class BackgroundShader {
 	
@@ -34,6 +35,10 @@ public class BackgroundShader {
 		time = 0;
 		
 		batch.setShader(shader);
+	}
+	
+	public void setProjectionMatrix(Matrix4 projection) {
+		batch.setProjectionMatrix(projection);
 	}
 	
 	public void render(float x, float y, float width, float height) {
