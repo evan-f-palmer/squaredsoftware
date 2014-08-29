@@ -4,8 +4,12 @@ sourceCompatibility = 1.6
 sourceSets.main.java.srcDirs = [ "src/" ]
 
 project.ext.luaInterpreterMainClassName = "com.squaredsoftware.desktop.luaInterpreter.LuaInterpreter"
+project.ext.platformerTest = "com.squaredsoftware.desktop.test.platformer.DesktopLauncher"
+project.ext.gamJamMainClassName = "com.squaredsoftware.desktop.gamejam.DesktopLauncher"
 project.ext.assetsDir = new File("assets");
 project.ext.luaSrcDir = new File("../squaredsoftware-core/src.lua");
+project.ext.luaShaderDir = new File("../squaredsoftware-core/shaders");
+
 jarPath =  new File("build/libs/desktop-1.0.jar");
 
 task buildLuaInterpreter(type: Jar) {
@@ -28,6 +32,52 @@ task runGdxInputTest(dependsOn: classes, type: JavaExec) {
     standardInput = System.in
     workingDir = project.assetsDir
     ignoreExitValue = true	
+}
+
+task platformerTestDist(type: Jar) {
+    from files(sourceSets.main.output.classesDir)
+    from files(sourceSets.main.output.resourcesDir)
+    from {configurations.compile.collect {zipTree(it)}}
+    from files(project.assetsDir);
+    from files(project.luaSrcDir);
+    from files(project.luaShaderDir);
+ 
+    manifest {
+        attributes 'Main-Class': project.platformerTest
+    }
+}
+platformerTestDist.dependsOn classes
+
+task runPlatformerTest(dependsOn: platformerTestDist) << {
+	javaexec {
+		main="-jar"; 
+		standardInput = System.in; 
+		ignoreExitValue = true; 
+		args jar.archivePath
+	}
+}
+
+task jamDist(type: Jar) {
+    from files(sourceSets.main.output.classesDir)
+    from files(sourceSets.main.output.resourcesDir)
+    from {configurations.compile.collect {zipTree(it)}}
+    from files(project.assetsDir);
+    from files(project.luaSrcDir);
+    from files(project.luaShaderDir);
+ 
+    manifest {
+        attributes 'Main-Class': project.gamJamMainClassName
+    }
+}
+jamDist.dependsOn classes
+
+task runJam(dependsOn: jamDist) << {
+	javaexec {
+		main="-jar"; 
+		standardInput = System.in; 
+		ignoreExitValue = true; 
+		args jar.archivePath
+	}
 }
 
 eclipse {
