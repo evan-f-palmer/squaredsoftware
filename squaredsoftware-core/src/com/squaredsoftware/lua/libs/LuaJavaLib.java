@@ -1,4 +1,4 @@
-package com.squaredsoftware.lua;
+package com.squaredsoftware.lua.libs;
 
 import org.luaj.vm2.LuaError;
 import org.luaj.vm2.LuaTable;

@@ -5,14 +5,15 @@ import org.luaj.vm2.LoadState;
 import org.luaj.vm2.compiler.LuaC;
 import org.luaj.vm2.lib.Bit32Lib;
 import org.luaj.vm2.lib.CoroutineLib;
-import org.luaj.vm2.lib.PackageLib;
 import org.luaj.vm2.lib.StringLib;
 import org.luaj.vm2.lib.TableLib;
 import org.luaj.vm2.lib.jse.JseBaseLib;
 import org.luaj.vm2.lib.jse.JseIoLib;
 import org.luaj.vm2.lib.jse.JseMathLib;
-import com.squaredsoftware.lua.LuaJavaLib;
-import com.squaredsoftware.lua.LuaOSLib;
+
+import com.squaredsoftware.lua.libs.LuaJavaLib;
+import com.squaredsoftware.lua.libs.LuaOSLib;
+import com.squaredsoftware.lua.libs.LuaPackageLib;
 
 public class GdxLuaGlobals extends Globals {
     public GdxLuaGlobals() {
@@ -33,7 +34,7 @@ public class GdxLuaGlobals extends Globals {
 
 	private void loadStandardLibs() {
 		load(new JseBaseLib());
-		load(new PackageLib());
+		load(new LuaPackageLib());
 		load(new Bit32Lib());
 		load(new TableLib());
 		load(new StringLib());

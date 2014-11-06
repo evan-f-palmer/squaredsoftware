@@ -16,11 +16,12 @@ import org.luaj.vm2.lib.jse.CoerceLuaToJava;
 
 import com.badlogic.gdx.Gdx;
 import com.squaredsoftware.lua.gdx.GdxLuaGlobals;
+import com.squaredsoftware.lua.libs.LuaPackageLib;
 
 public class Lua {
 	private static final int SQUARED_SOFTWARE_VERSION_INDEX = 0;
 	private static final String[] SQUARED_SOFTWARE_VERSIONS = {
-		"1.0.5"
+		"1.1.0"
 	};
 	
 	private static String SQUARED_SOFTWARE_GIT_ID = "";
@@ -50,6 +51,7 @@ public class Lua {
 	
 	public void loadFile(String fileName) {
 		try {
+			addFileLocationToPath(fileName);
 			processScript( globals.finder.findResource(fileName), fileName, null, 0);
 		} catch (IOException e) {
 			LuaLoadFileException luaLoadFileException = new LuaLoadFileException();
@@ -95,11 +97,19 @@ public class Lua {
 		
 		try {
 			for (;index<args.length; index++ ) {
+				addFileLocationToPath(args[index]);
 				processScript( globals.finder.findResource(args[index]), args[index], args, index);
 			}
 		} catch ( IOException ioe ) {
 			Gdx.app.error("Lua ERROR", ioe.toString() );
 			Gdx.app.exit();
+		}
+	}
+
+	public void addFileLocationToPath(String file) {
+		if(file.contains(System.getProperty("file.separator"))) {
+			String pathToFile = file.substring(0, file.lastIndexOf(System.getProperty("file.separator")));
+			((LuaPackageLib)globals.package_).appendToLuaPath(pathToFile);
 		}
 	}
 

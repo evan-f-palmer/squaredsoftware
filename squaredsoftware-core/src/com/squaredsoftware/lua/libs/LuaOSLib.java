@@ -1,4 +1,4 @@
-package com.squaredsoftware.lua;
+package com.squaredsoftware.lua.libs;
 
 import java.io.BufferedReader;
 import java.io.IOException;
