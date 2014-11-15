@@ -97,8 +97,10 @@ public class Lua {
 		
 		try {
 			for (;index<args.length; index++ ) {
-				addFileLocationToPath(args[index]);
-				processScript( globals.finder.findResource(args[index]), args[index], args, index);
+				if(args[index].contains(".lua")) {
+					addFileLocationToPath(args[index]);
+					processScript( globals.finder.findResource(args[index]), args[index], args, index);
+				}
 			}
 		} catch ( IOException ioe ) {
 			Gdx.app.error("Lua ERROR", ioe.toString() );
