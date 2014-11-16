@@ -22,5 +22,8 @@ Stack = Class({
   end,
   get = function(self, index)
     return self.elements[self:size() - index + 1]
+  end,
+  clear = function(self)
+    self.elements = {}
   end
 })
