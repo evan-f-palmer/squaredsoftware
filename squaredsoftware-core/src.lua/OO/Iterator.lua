@@ -4,7 +4,9 @@ Iterator = Class({
   object = {},
   index  = 1,
   next = function(self) 
+    local previousElement = self:current()
     self.index = self.index + 1
+    return previousElement
   end,
   current = function(self)
     return self.object.get(self.index)
