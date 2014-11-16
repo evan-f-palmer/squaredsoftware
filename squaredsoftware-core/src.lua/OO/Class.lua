@@ -42,9 +42,10 @@ function newInstance(baseclass, construct)
 end
 
 function inherit(subclass, baseclass)
-  return setmetatable(subclass,   { 
-         __index  = baseclass, 
-         __call   = baseclass.new, 
-         __add    = baseclass.new, 
-         __concat = baseclass.new })
+  return setmetatable(subclass, { 
+           __index  = baseclass, 
+           __call   = baseclass.new, 
+           __add    = baseclass.new, 
+           __concat = baseclass.new 
+         })
 end 
