@@ -1,18 +1,20 @@
 require 'Class'
 
-Stack = Class({
+Queue = Class({
+  front = 1, 
   elements = {},
   size = function(self)
-    return #(self.elements)
+    return #(self.elements) - self.front + 1
   end,
-  push = function(self, element)
+  enqueue = function(self, element)
     table.insert(self.elements, element)
   end,
-  pop = function(self)
-    return table.remove(self.elements)
+  dequeue = function(self)
+    self.front = self.front + 1
+    return table.remove(self.front - 1)
   end, 
   peek = function(self)
-    return self.elements[self:size()]
+    return self.elements[self.front]
   end,
   isEmpty = function(self)
     return self:size() == 0
@@ -21,6 +23,6 @@ Stack = Class({
     return table.concat(self.elements, "\n")
   end,
   get = function(self, index)
-    return self.elements[self:size() - index + 1]
+    return self.elements[self.front + index - 1]
   end
 })
