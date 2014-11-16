@@ -9,10 +9,10 @@ Iterator = Class({
     return previousElement
   end,
   current = function(self)
-    return self.object.get(self.index)
+    return self.object:get(self.index)
   end,
   isFinished = function(self)
-    return self.index > self.object.size()
+    return self.index > self.object:size()
   end
 })
 
