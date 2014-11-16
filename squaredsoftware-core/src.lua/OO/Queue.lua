@@ -10,8 +10,10 @@ Queue = Class({
     table.insert(self.elements, element)
   end,
   dequeue = function(self)
+    local dequeuedElement = self.elements[self.front]
+    self.elements[self.front] = nil
     self.front = self.front + 1
-    return table.remove(self.elements, self.front - 1)
+    return dequeuedElement
   end, 
   peek = function(self)
     return self.elements[self.front]
