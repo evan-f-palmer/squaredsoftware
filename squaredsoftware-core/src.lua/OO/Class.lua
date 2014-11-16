@@ -27,6 +27,8 @@ setmetatable(Class, {
 --  OO Static Globals
 ---------------------------------------- 
 
+Object = Class
+
 super = function(object)
   return getmetatable(object).__index
 end
