@@ -1,22 +1,25 @@
---local pathSeparator        = os.getenv("PATH"):sub(1,1)
---local DEF_WIN32, DEF_LINUX = pathSeparator == "\\", pathSeparator == "/"
-local pathSeparator = "/"
-local DEF_WIN32, DEF_LINUX = false, true
-local thisOS
+--[[
+  https://docs.oracle.com/javase/7/docs/api/java/lang/System.html
+]]--
 
-if DEF_LINUX then
-  require "ScriptUtil/Linux"
-  thisOS = Linux
-end
-if DEF_WIN32 then
-  require "ScriptUtil/Windows"
-  thisOS = Windows
-end
+local getOS
+local sys = luajava.bindClass('java.lang.System')
+local os_name = sys:getProperty("os.name")
 
-OS = thisOS
+DEF_LINUX = string.match(os_name, "Linux")
+DEF_WIN32 = not DEF_LINUX
+OS        = getOS()
 
-OS_DATA = {
-  pathSeparator = pathSeparator,
-  DEF_WIN32     = DEF_WIN32,
-  DEF_LINUX     = DEF_LINUX,
-}
+OS.pathSeparator = sys:getProperty("path.separator")
+OS.fileSeparator = sys:getProperty("file.separator")
+OS.lineSeparator = sys:getProperty("line.separator")
+OS.arch          = sys:getProperty("os.arch")
+OS.version       = sys:getProperty("os.version")
+OS.username      = sys:getProperty("user.name")      -- User's account name
+OS.userhome      = sys:getProperty("user.home")      -- User's home directory
+OS.userdir       = sys:getProperty("user.dir")       -- User's current working directory
+
+function getOS()
+  if DEF_LINUX then require "Linux";   return Linux;   end
+  if DEF_WIN32 then require "Windows"; return Windows; end
+end 
