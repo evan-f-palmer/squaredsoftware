@@ -11,7 +11,7 @@ Queue = Class({
   end,
   dequeue = function(self)
     self.front = self.front + 1
-    return table.remove(self.front - 1)
+    return table.remove(self.elements, self.front - 1)
   end, 
   peek = function(self)
     return self.elements[self.front]
