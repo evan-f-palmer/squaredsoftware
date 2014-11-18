@@ -4,8 +4,8 @@ require 'Class'
 ----------------------------------------
 Exception = Class({
   message      = "Exception",
-  printMessage = function(self) print(self.message) end,
-  throw        = function(self) error(self.message) end,
+  printMessage = function(thisException) print(thisException.message) end,
+  throw        = function(thisException) error(thisException.message) end,
 })
                      
 ----------------------------------------

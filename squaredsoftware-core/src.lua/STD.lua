@@ -1,4 +1,16 @@
-require 'rio'
+require 'RIO'
+
+local fill
+local promptInput
+local writeTextToFile
+local writeTable
+local listTable
+local writeBoolean
+local writeValue
+local equalTable
+local equal
+local clear
+local copy
 
 function fill(n, char)
   local str = {}
@@ -7,8 +19,8 @@ function fill(n, char)
 end
 
 function promptInput(xPrompt)
-  rio.write(xPrompt); rio.flush();
-  return rio.read()
+  RIO.write(xPrompt); RIO.flush();
+  return RIO.read()
 end
 
 function writeTextToFile(filename, text)
@@ -19,32 +31,32 @@ function writeTextToFile(filename, text)
 end
 
 function writeTable(t)
-  rio.write('{')
+  RIO.write('{')
   for k,v in pairs(t) do
     writeValue(v)
-    if k < #t then rio.write(', ') end
+    if k < #t then RIO.write(', ') end
   end
-  rio.write('}')
+  RIO.write('}')
 end
 
 function listTable(t, leadLineString)
   local lead  = leadLineString or ""
   for _,v in pairs(t) do
-    rio.write(lead)
+    RIO.write(lead)
     writeValue(v)
-    rio.write('\n')
+    RIO.write('\n')
   end
 end
 
 function writeBoolean(x)
-  return x and rio.write("true") or rio.write("false") 
+  return x and RIO.write("true") or RIO.write("false") 
 end
 
 local writeValueDispatchTable = {
-  ["nil"] = function() rio.write("nil") end,
+  ["nil"] = function() RIO.write("nil") end,
   boolean = writeBoolean,
-  number  = rio.write,
-  string  = rio.write,
+  number  = RIO.write,
+  string  = RIO.write,
   table   = writeTable,
 }
 
@@ -93,3 +105,17 @@ function copy(source, destination)
   end
   return destination
 end
+
+STD = {
+  copy  = copy,
+  clear = clear,
+  equal = equal,
+  write = writeValue,
+  
+  fill            = fill,
+  promptInput     = promptInput,
+  listTable       = listTable,
+  writeTextToFile = writeTextToFile,  
+  
+  HELP            = listTable,
+}

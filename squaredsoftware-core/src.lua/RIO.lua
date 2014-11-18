@@ -37,8 +37,8 @@ function readall() io.read("*all") end
   ----------------------
   -- PUBLIC INTERFACE --
   ----------------------
-  --
-rio = {
+  
+RIO = {
   
   getInputStream          = getInputStream,
   getOutputStream         = getOutputStream,

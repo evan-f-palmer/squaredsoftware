@@ -3,30 +3,6 @@ require 'Class'
 local newInterface
 local combineInterfaces
 
-Interface = {}
-
-function Interface:new(methodNameArray)
-  return newInterface(methodNameArray)
-end
-
-setmetatable(Interface, { 
-  __call   = newInterface, 
-  __add    = combineInterfaces, 
-  __concat = combineInterfaces 
-})
-
-----------------------------------------
---  OO Static Globals
----------------------------------------- 
-
-PureVirtualFunction = function() 
-  error('Pure Virtual Functions cannot be executed.') 
-end
-
-----------------------------------------
---  Support
-----------------------------------------
-
 function newInterface(methodNameArray)
   local pureTable = {}
   for i=1, #methodNameArray do
@@ -40,3 +16,23 @@ function combineInterfaces(A, B)
   for i=1, #A do B[#B+1] = A[i] end
   return B
 end
+
+----------------------------------------
+--  OO Static Globals
+---------------------------------------- 
+
+PureVirtualFunction = function() 
+  error('Pure Virtual Functions cannot be executed.') 
+end
+
+Interface = {
+  new = function(xSelf, methodNameArray)
+    return newInterface(methodNameArray or xSelf)
+  end,
+}
+
+setmetatable(Interface, { 
+  __call   = newInterface, 
+  __add    = combineInterfaces, 
+  __concat = combineInterfaces 
+})

@@ -3,14 +3,16 @@ require 'Stack'
 local canCatch
 local isSupposedToCatchFunction
 
-catchStack = Stack()
+catchStack = Stack() -- GLOBAL CATCH STACK IS ThE REASON FUNCTIONS ARE NOT THREAD SAFE
 
+--[[ CURRENTLY NOT SAFE FOR MULTITHREADED APPLICATIONS ]]--
 function try(f, ...)
   if not pcall(f, ...) then
     catchStack:push(f)
   end
 end
 
+--[[ CURRENTLY NOT SAFE FOR MULTITHREADED APPLICATIONS ]]--
 function catch(f, handler, ...)
   if canCatch() then
     if isSupposedToCatchFunction(f) then
@@ -22,9 +24,12 @@ function catch(f, handler, ...)
   end
 end
 
+-- THREAD SAFE
 function trycatch(f, handler)
-  try(f) 
-  catch(f, handler)
+  if not pcall(f) then handler() end
+  -- NOT THREAD SAFE
+  --try(f) 
+  --catch(f, handler)
 end
 
 ---------------------
