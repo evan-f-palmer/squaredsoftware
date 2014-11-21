@@ -1,7 +1,12 @@
 /build
 **/.gradle/
+.gradle/1.4/taskArtifacts/**
+.gradle/1.11/taskArtifacts/*
 /desktop/build
 /desktop/bin
 **.classpath
 **.project
 **.settings
+squaredsoftware-core/src.lua/SquaredSoftwareGitId.lua
+*~
+
