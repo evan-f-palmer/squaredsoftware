@@ -1,4 +1,4 @@
-#!/opt/squaredsoftware/bin/lua
+#!/opt/squaredsoftware/bin/luaj
 require("ScriptUtil")
 
 local newName                      = ""

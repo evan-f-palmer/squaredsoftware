@@ -1,0 +1,2 @@
+#!/bin/bash
+rlwrap java -jar /opt/squaredsoftware/luaj/luaj.jar "$@"

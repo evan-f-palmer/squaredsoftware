@@ -1,14 +1,14 @@
-#!/opt/squaredsoftware/bin/lua
+#!/opt/squaredsoftware/bin/luaj
 require("ScriptUtil")
 
-local tmpDir         = "~/ws/tmp/"
+local tmpDir         = "/tmp/"
 local repoDir        = "luaUpdate/"
 local repoDirAbsPath = tmpDir .. repoDir
 local desktopDir     = "squaredsoftware-desktop/"
 local buildCmd       = "../gradlew buildLuaInterpreter"
 local libsDir        = "build/libs/"
 local builtJarName   = "squaredsoftware-desktop-1.0.jar"
-local newJarName     = "luaNew.jar"
+local newJarName     = "luajNew.jar"
 local installDir     = "/opt/squaredsoftware/lua/"
 
 local main
@@ -35,7 +35,7 @@ main = function()
     Execute.executeCmd(buildCmd)
     Linux.deleteFile(installDir .. newJarName)
     Linux.move(libsDir .. builtJarName, installDir .. newJarName)
-    Linux.move(installDir .. newJarName, installDir .. "lua.jar")
+    Linux.move(installDir .. newJarName, installDir .. "luaj.jar")
   end
 end
 
