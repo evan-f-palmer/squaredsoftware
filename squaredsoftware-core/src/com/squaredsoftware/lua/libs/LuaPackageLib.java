@@ -66,7 +66,7 @@ public class LuaPackageLib extends PackageLib {
 		try {
 			DEFAULT_LUA_PATH = System.getProperty("luaj.package.path");
 		} catch (Exception e) {
-			System.out.println(e.toString());
+			//System.out.println(e.toString());
 		}
 		if (DEFAULT_LUA_PATH == null)
 			DEFAULT_LUA_PATH = "?.lua";
@@ -134,7 +134,7 @@ public class LuaPackageLib extends PackageLib {
 	
 	public void appendToLuaPath( String newLuaPath ) {
 		package_.set(_PATH, LuaValue.valueOf(package_.get(_PATH) + ";" + newLuaPath + "/?.lua"));
-		System.out.println("PATH IS " + package_.get(_PATH));
+		//System.out.println("PATH IS " + package_.get(_PATH));
 	}
 	
 	public String tojstring() {
