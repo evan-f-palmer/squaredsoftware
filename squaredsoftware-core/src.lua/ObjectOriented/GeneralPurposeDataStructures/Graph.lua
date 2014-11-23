@@ -1,5 +1,5 @@
-require 'Class'
-require 'Stack'
+require 'ObjectOriented/Class'
+require 'GeneralPurposeDataStructures/Stack'
 --require 'Edge'
 
 local function add(elementtable, element)

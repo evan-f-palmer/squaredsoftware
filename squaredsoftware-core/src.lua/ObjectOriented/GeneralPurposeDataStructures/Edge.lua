@@ -1,4 +1,4 @@
-require 'Class'
+require 'ObjectOriented/Class'
 
 local function containsVertex(edge, VERTEX) return edge.A == VERTEX or edge.B == VERTEX end
 local function setWeight(edge, WEIGHT)      edge.weight = WEIGHT                        end

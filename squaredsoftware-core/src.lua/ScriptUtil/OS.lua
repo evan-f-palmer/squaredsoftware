@@ -21,8 +21,8 @@ OS.userhome      = sys:getProperty("user.home")      -- User's home directory
 OS.userdir       = sys:getProperty("user.dir")       -- User's current working directory
 
 function getOS()
-  if      DEF_LINUX then require "Linux";   return Linux;
-  elseif  DEF_WIN32 then require "Windows"; return Windows; 
-  else                                      return {};
+  if      DEF_LINUX then require "ScriptUtil/Linux";   return Linux;
+  elseif  DEF_WIN32 then require "ScriptUtil/Windows"; return Windows; 
+  else                                                 return {};
   end
 end 
