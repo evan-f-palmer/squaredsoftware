@@ -1,3 +1,5 @@
+require "STD"
+
 local expect
 local expectFunctions
 local expectLogFunction = function(functionType, a, b, message) 
