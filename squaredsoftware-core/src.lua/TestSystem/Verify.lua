@@ -6,8 +6,8 @@ local expectLogFunction = function(functionType, a, b, message)
   print("expect_" .. functionType .. " failed. " .. message) 
 end
 
-function assertEQ(a, b, message) assert(equal(a,b),     message) end
-function assertNE(a, b, message) assert(not equal(a,b), message) end
+function assertEQ(a, b, message) assert(STD.equal(a,b),     message) end
+function assertNE(a, b, message) assert(not STD.equal(a,b), message) end
 function assertLT(a, b, message) assert(a < b,          message) end
 function assertGT(a, b, message) assert(a > b,          message) end
 function assertLE(a, b, message) assert(a <= b,         message) end
