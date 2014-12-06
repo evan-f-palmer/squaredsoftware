@@ -1,4 +1,4 @@
-require 'Stack'
+require 'ObjectOriented/GeneralPurposeDataStructures/Stack'
 
 local canCatch
 local isSupposedToCatchFunction

@@ -1,4 +1,4 @@
-require 'Class'
+require 'ObjectOriented/Class'
 ----------------------------------------
 --  Public Interface
 ----------------------------------------
